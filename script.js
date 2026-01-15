@@ -1,5 +1,5 @@
 // ប្តូរ URL នេះជាមួយ Web App URL របស់អ្នក (ដែលទទួលបានពី Google Deploy)
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzkSucZrtLhXgqIqCb1U1UzIy-aKNyWLQvxCaHas1qLm1RXM9GI3fSnrFcSXPKwjohy/exec?type=json";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxeuFrWstnvlo6M7ZSol46p497w3jwXYFcwe3mRl4rG3_o8oLzIrBk5rz53ZtkJdLpb/exec?type=json";
 
 let allData = [];
 
