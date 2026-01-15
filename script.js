@@ -69,18 +69,19 @@ function filterData() {
         const gender = row[2];
         const className = row[3];
         const fee = row[4];
-        const paidAmt = row[6]; // Column G = Index 6
+        const paidAmt = row[6]; // Column G
+        const statusFromSheet = row[14] ? row[14].toString().trim() : ""; // Column O (Index 14)
 
         const feeVal = parseMoney(fee);
         const paidVal = parseMoney(paidAmt);
         const balVal = feeVal - paidVal;
-        
         const balance = balVal <= 0 ? "0 KHR" : balVal.toLocaleString() + " KHR";
 
         let badge = "";
         let borderClass = "";
 
-        if (paidVal >= feeVal && feeVal > 0) {
+        // ពិនិត្យលក្ខខណ្ឌ៖ បើ Column O មានពាក្យ "Paid" ឬ ការគណនាស្មើនឹងបង់អស់
+        if (statusFromSheet.toLowerCase().includes("paid") || (paidVal >= feeVal && feeVal > 0)) {
             badge = `<span class="badge-paid px-2 py-0.5 rounded text-[10px] font-bold">PAID</span>`;
             borderClass = "border-green-500";
         } else if (paidVal > 0) {
@@ -91,6 +92,7 @@ function filterData() {
             borderClass = "border-red-500";
         }
 
+        // ... ផ្នែកបង្ហាញ tbody.innerHTML និង mobileContainer.innerHTML ទុកនៅដដែល ...
         tbody.innerHTML += `
             <tr class="border-b hover:bg-gray-50">
                 <td class="p-3 font-medium">${id}</td>
@@ -102,6 +104,9 @@ function filterData() {
                 <td class="p-3 text-right text-red-500 font-semibold">${balance}</td>
                 <td class="p-3 text-center">${badge}</td>
             </tr>`;
+        
+        // (កុំភ្លេចបិទរង្វង់ក្រចកឱ្យត្រូវលំដាប់)
+    });
 
         mobileContainer.innerHTML += `
             <div class="mobile-card ${borderClass} bg-white shadow-sm mb-3 p-4 rounded-lg border-l-4">
@@ -158,5 +163,4 @@ function updateStats(data) {
     updateLabel('pTotalFee', sumFee.toLocaleString() + " KHR");
     updateLabel('pTotalCollected', sumPaid.toLocaleString() + " KHR");
     updateLabel('pTotalBalance', sumBal.toLocaleString() + " KHR");
-
 }
