@@ -1,4 +1,4 @@
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbywAXHh0Ox9IR92KkrvR1ffKy4RN0jwZ91NfrZgB1Zx5XDD2i08szfo5jVNf-8mhPSj/exec?type=json";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxeuFrWstnvlo6M7ZSol46p497w3jwXYFcwe3mRl4rG3_o8oLzIrBk5rz53ZtkJdLpb/exec?type=json";
 
 let allData = [];
 
@@ -158,4 +158,5 @@ function updateStats(data) {
     updateLabel('pTotalFee', sumFee.toLocaleString() + " KHR");
     updateLabel('pTotalCollected', sumPaid.toLocaleString() + " KHR");
     updateLabel('pTotalBalance', sumBal.toLocaleString() + " KHR");
+
 }
